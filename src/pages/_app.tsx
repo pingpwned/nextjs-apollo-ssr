@@ -21,6 +21,8 @@ App.getInitialProps = async (context: AppContext) => {
   const cacheKey = "date";
   const cacheData = cacheUtl.get(cacheKey);
 
+  console.log(cacheData, "cacheData");
+
   if (cacheData) {
     return {
       ...ctx,
