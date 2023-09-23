@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.4",
     "@types/node": "20.6.3",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
+    "apollo-cache-inmemory": "^1.6.6",
     "autoprefixer": "10.4.16",
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.8.1",
     "next": "13.5.2",
     "postcss": "8.4.30",
     "react": "18.2.0",
