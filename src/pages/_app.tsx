@@ -1,13 +1,19 @@
 import { client } from "@/client";
+import { Navbar } from "@/components/Navbar";
 import "@/styles/globals.css";
 import { CacheUtil } from "@/utils/cache";
 import { gql } from "@apollo/client";
 import type { AppContext, AppProps } from "next/app";
 import NextApp from "next/app";
 
-const cacheUtl = new CacheUtil();
+export const cacheUtl = new CacheUtil();
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Navbar />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 App.getInitialProps = async (context: AppContext) => {

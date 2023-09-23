@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import { gql } from "@apollo/client";
+import { client } from "@/client";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ date }: any) {
+export default function NativeApolloCache({ date }: any) {
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-start p-24 ${inter.className}`}
@@ -32,3 +34,30 @@ export default function Home({ date }: any) {
     </main>
   );
 }
+
+export const getServerSideProps = async () => {
+  const query = gql`
+    query {
+      date
+      __typename
+    }
+  `;
+
+  const {
+    data: { date },
+  }: any = await client.query({
+    query,
+    fetchPolicy: "network-only",
+    context: {
+      fetchOptions: {
+        next: { revalidate: 10 },
+      },
+    },
+  });
+
+  return {
+    props: {
+      date,
+    },
+  };
+};
