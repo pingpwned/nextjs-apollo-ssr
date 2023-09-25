@@ -1,37 +1,34 @@
-import { CacheUtil } from "@/utils/cache";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
 
-const ApiDataContext = createContext(null);
+type FetchDataFunction = () => Promise<any> | null; // Define the function type
 
-// export const cacheUtl = new CacheUtil();
+const ApiDataContext = createContext<FetchDataFunction | null>(null);
 
 export const ApiDataProvider = ({ children }: any) => {
-  const [apiData, setApiData] = useState(null);
-
-  useEffect(() => {
-    // Fetch data from your API route on the server side
-    async function fetchData() {
-      try {
-        const response = await fetch("/api/fetchApi").then((data) =>
-          data.json()
-        );
-        const data = response;
-        setApiData(data);
-      } catch (error) {
-        console.error(error);
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/fetchApi");
+      if (response.ok) {
+        const data = await response.json();
+        return data;
       }
+    } catch (error) {
+      console.error(error);
     }
-
-    fetchData();
-  }, []);
+    return null;
+  };
 
   return (
-    <ApiDataContext.Provider value={apiData}>
+    <ApiDataContext.Provider value={fetchData}>
       {children}
     </ApiDataContext.Provider>
   );
 };
 
 export const useApiData = () => {
-  return useContext(ApiDataContext);
+  const fetchData = useContext(ApiDataContext);
+  if (fetchData === null) {
+    throw new Error("useApiData must be used within an ApiDataProvider");
+  }
+  return fetchData;
 };

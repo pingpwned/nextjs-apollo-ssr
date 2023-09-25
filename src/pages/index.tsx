@@ -1,11 +1,19 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import { useApiData } from "@/providers/ApiContextProvider";
+import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const date = useApiData();
+  const [date, setDate] = useState(null);
+  const getDate = useApiData();
+
+  useEffect(() => {
+    getDate()?.then((data) => {
+      setDate(data);
+    });
+  }, []);
 
   return (
     <main
