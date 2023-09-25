@@ -3,7 +3,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 export const client = new ApolloClient({
   ssrMode: true,
   link: new HttpLink({
-    uri: "http://localhost:3000/api/graphql",
+    uri: `${process.env.VERCEL_URL}/api/graphql`,
   }),
   cache: new InMemoryCache(),
   defaultOptions: {
