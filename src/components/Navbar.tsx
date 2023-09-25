@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 export const Navbar = () => {
   const { pathname } = useRouter();
-  console.log(pathname, "pathname");
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

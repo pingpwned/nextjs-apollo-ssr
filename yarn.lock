@@ -261,6 +261,11 @@
   dependencies:
     xss "^1.0.8"
 
+"@as-integrations/next@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@as-integrations/next/-/next-2.0.2.tgz#b29ef3df03ef0a0c24f40f06132a1f16879f27f7"
+  integrity sha512-nznFAbWpgB60aF44vLfy9AieYY0t9yv4QqYX0DfPQ24Qa9qny/6uUdKoDpDC0MLWSBLC64XVfzaNylJUpiXVUA==
+
 "@babel/runtime@^7.20.7":
   version "7.22.15"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.15.tgz#38f46494ccf6cf020bd4eed7124b425e83e523b8"

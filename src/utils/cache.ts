@@ -14,12 +14,13 @@ export class CacheUtil {
   }
 
   public get(key: string) {
-    if (!this.isExpired(this.cache[key])) return this.cache[key];
+    if (!this.isExpired(this.cache[key])) return this.cache[key].value;
+
     this.cache[key] = null;
     return;
   }
 
   public set(key: string, value: any) {
-    this.cache[key] = value;
+    this.cache[key] = { value, expiration: Date.now() };
   }
 }
