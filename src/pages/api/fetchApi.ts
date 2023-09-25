@@ -28,7 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(date);
     }
   } catch (error) {
-    console.error(error);
+    console.error("error ***********", error);
     res.status(500).json({ error: "Some error" });
   }
 };
